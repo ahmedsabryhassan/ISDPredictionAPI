@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Image Classification</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h1 class="jumbotron bg-primary">Image Classfication</h1>
+  <br><br>
+  <form class="form-horizontal" action="/postPredicting" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="textfield">The post caption</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" placeholder="Enter Caption"  name="caption" id="textfield" required>
+      </div>
+
+      <label class="control-label col-sm-2" for="pwd">Upload Your Image :</label>
+      <div class="col-sm-10">          
+        <input type="file" class="form-control" placeholder="Hours Studied"  name="my_image" id="pwd" multiple required>
+      </div>
+    </div>
+
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-success">Submit</button>
+      </div>
+    </div>
+  </form>
+
+  {% for pre in predictionImage %}
+  <img src="{{img_path[loop.index0]}}" height="400px" width="400px">
+	<h2> Your Prediction   : <i> {{predictionImage[loop.index0]}} </i></h2>
+  {% endfor %}
+
+  {% for pre in predictionVideo %}
+  <video width="400px" height="400px" controls>
+    <source src="{{video_path[loop.index0]}}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+	<h2> Your Prediction   : <i> {{predictionVideo[loop.index0]}} </i></h2>
+  {% endfor %}
+  {% if prediction %}
+  <img src="{{img_path}}" height="400px" width="400px">
+	<h2> Your Prediction   : <i> {{prediction}} </i></h2>
+
+	{% endif %}
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
